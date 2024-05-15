@@ -1,28 +1,26 @@
 # SorceryLife
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
+SorceryLife is an open-source life and mana counter app for the trading card game (TCG) Sorcery: Contested Realm.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Life and mana tracking for players in Sorcery: Contested Realm.
+- Simple and intuitive interface.
+- Easily adjustable life and mana totals.
 
-## Code scaffolding
+## Getting Started
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To get started with SorceryLife, simply clone the repository to your local machine.
 
-## Build
+```bash
+git clone https://github.com/donusa/SorceryLife.git
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Usage
+Open the SorceryLife app.
+Set the starting life and mana totals for each player.
+Adjust life and mana totals by tapping the upper or lower portion of each number to increment or decrement.
+Branching and Updates
+Feel free to branch the application and make any updates or improvements you see fit. To contribute changes, submit a merge request (MR) with your proposed updates.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# sorceryLife
+Contact
+If you have any questions, suggestions, or feedback, you can reach out to me on Twitter @OrbMeister.

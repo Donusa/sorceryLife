@@ -1,18 +1,23 @@
 <div class="container">
     <div class="top-row">
-      <img src="../../assets/pictures/air_element.jpg" class="rotated" alt="img1a">
-      <img src="../../assets/pictures/earth_element.jpg" class="rotated" alt="img2a">
-      <img src="../../assets/pictures/fire_element.jpg" class="rotated" alt="img3a">
-      <img src="../../assets/pictures/water_element.jpg" class="rotated" alt="img4a">
+      <div class="image-container" *ngFor="let image of topImages; let i = index">
+        <div class="counter">{{ counts[i] }}</div>
+        <img 
+          [src]="image.src" 
+          alt="Image {{ i + 1 }}" 
+          class="rotated" 
+          (click)="handleClick(i, $event)">
+      </div>
     </div>
-
     <div class="divider"></div>
-
-
     <div class="bottom-row">
-        <img src="../../assets/pictures/air_element.jpg" alt="img1b">
-        <img src="../../assets/pictures/earth_element.jpg"alt="img2b">
-        <img src="../../assets/pictures/fire_element.jpg" alt="img3b">
-        <img src="../../assets/pictures/water_element.jpg" alt="img4b">
+      <div class="image-container" *ngFor="let image of bottomImages; let i = index">
+        <div class="counter">{{ counts[i + topImages.length] }}</div>
+        <img 
+          [src]="image.src" 
+          alt="Image {{ i + 1 + topImages.length }}" 
+          (click)="handleClick(i + topImages.length, $event)">
+      </div>
     </div>
   </div>
+  

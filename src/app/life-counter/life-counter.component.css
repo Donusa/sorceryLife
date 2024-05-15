@@ -12,7 +12,7 @@
     width: 100%;
   }
   
-  .top-row .rotated {
+  .rotated {
     transform: rotate(180deg);
   }
   
@@ -28,22 +28,40 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 5px;
   }
   
   .counter {
     position: absolute;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     font-size: 1.5em;
     color: black;
     z-index: 1;
+    pointer-events: none;
   }
   
-  img {
+  .life {
+    transform: translateY(10%);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    font-size: 10em;
+    color: black;    
+    pointer-events: none;
+  }
+
+  .element-img {
     width: 69px;
     height: 69px;
     cursor: pointer;
     z-index: 0;
   }
   
+  .lp-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 35vh;
+  }

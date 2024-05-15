@@ -25,16 +25,50 @@ export class LifeCounterComponent implements OnInit {
     { src: "../../assets/pictures/water_element.jpg" }
   ];
   counts = [0, 0, 0, 0, 0, 0, 0, 0];
+  topLife:number = 20;
+  bottomLife:number = 20;
 
   handleClick(index: number, event: MouseEvent) {
     const imageElement = event.target as HTMLElement;
     const rect = imageElement.getBoundingClientRect();
     const y = event.clientY - rect.top;
     
-    if (y < rect.height / 2) {
-      this.counts[index]++;
+    this.counts[index] = this.evaluateStat(y, rect.height, this.counts[index]);
+  }
+
+  handleInvertedClick(index: number, event: MouseEvent) {
+    const imageElement = event.target as HTMLElement;
+    const rect = imageElement.getBoundingClientRect();
+    const y = event.clientY - rect.top;
+    
+    this.counts[index] = this.evaluateInvertedStat(y, rect.height, this.counts[index]);
+  }
+
+  handleLife(side: string, event: MouseEvent) {
+    const imageElement = event.target as HTMLElement;
+    const rect = imageElement.getBoundingClientRect();
+    const y = event.clientY - rect.top;
+    if (side==="top"){
+      this.topLife = this.evaluateInvertedStat(y, rect.height, this.topLife);
+    }
+    else{
+      this.bottomLife = this.evaluateStat(y, rect.height, this.bottomLife);
+    }
+  }
+
+  evaluateStat(y: number, rect: number, stat: number):number{
+    if (y<rect/2){
+      return Math.min(stat + 1, 20);
     } else {
-      this.counts[index]--;
+      return Math.max(stat - 1, 0);
+    }
+  }
+
+  evaluateInvertedStat(y: number, rect: number, stat: number):number{
+    if (y<rect/2){
+      return Math.max(stat - 1, 0);
+    } else {
+      return Math.min(stat + 1, 20);
     }
   }
 

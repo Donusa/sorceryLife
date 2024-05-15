@@ -14,7 +14,7 @@ To get started with SorceryLife, simply clone the repository to your local machi
 
 ```bash
 git clone https://github.com/donusa/SorceryLife.git
-
+```
 Usage
 Open the SorceryLife app.
 Set the starting life and mana totals for each player.

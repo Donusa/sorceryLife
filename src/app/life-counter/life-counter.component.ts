@@ -16,15 +16,17 @@ export class LifeCounterComponent implements OnInit {
     { src: "../../assets/pictures/air_element.jpg"},
     { src: "../../assets/pictures/earth_element.jpg"},
     { src: "../../assets/pictures/fire_element.jpg" },
-    { src: "../../assets/pictures/water_element.jpg" }
+    { src: "../../assets/pictures/water_element.jpg" },
+    { src: "../../assets/pictures/mana.png"}
   ];
   bottomImages = [
     { src: "../../assets/pictures/air_element.jpg"},
     { src: "../../assets/pictures/earth_element.jpg"},
     { src: "../../assets/pictures/fire_element.jpg" },
-    { src: "../../assets/pictures/water_element.jpg" }
+    { src: "../../assets/pictures/water_element.jpg" },
+    { src: "../../assets/pictures/mana.png"}
   ];
-  counts = [0, 0, 0, 0, 0, 0, 0, 0];
+  counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   topLife:number = 20;
   bottomLife:number = 20;
 

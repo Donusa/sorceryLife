@@ -35,7 +35,7 @@
     top: 40%;
     transform: translateY(-50%);
     font-size: 1.5em;
-    color: black;
+    color: rgb(0, 0, 0);
     z-index: 1;
     pointer-events: none;
   }
@@ -57,6 +57,7 @@
     height: 69px;
     cursor: pointer;
     z-index: 0;
+    margin: 15px;
   }
   
   .lp-container {
@@ -66,7 +67,9 @@
     height: 35vh;
   }
 
-  *{
+  *:not(.counter) {
     filter: brightness(1.1);
     mix-blend-mode: multiply;
   }
+
+

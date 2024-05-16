@@ -16,8 +16,7 @@ To get started with SorceryLife, simply clone the repository to your local machi
 git clone https://github.com/donusa/SorceryLife.git
 ```
 Usage
-Open the SorceryLife app.
-Set the starting life and mana totals for each player.
+Open the SorceryLife web (https://donusa.github.io/sorceryLife/).
 Adjust life and mana totals by tapping the upper or lower portion of each number to increment or decrement.
 Branching and Updates
 Feel free to branch the application and make any updates or improvements you see fit. To contribute changes, submit a merge request (MR) with your proposed updates.

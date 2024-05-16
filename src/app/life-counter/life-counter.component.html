@@ -2,7 +2,7 @@
     <div class="top-row rotated">
       <div class="image-container" *ngFor="let image of topImages; let i = index">
         <div class="counter">{{ counts[i] }}</div>
-        <img class="element-img"
+        <img class="element-img rotated"
           [src]="image.src" 
           alt="Image {{ i + 1 }}" 
           class="rotated" 

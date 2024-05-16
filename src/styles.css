@@ -24,3 +24,7 @@ body {
     padding: 0;
   }
   
+  .footer-element { 
+    position: fixed; 
+    bottom: 10px;
+  }

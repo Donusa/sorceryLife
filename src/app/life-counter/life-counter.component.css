@@ -1,15 +1,25 @@
-.container {
+  
+  img {
+    filter: brightness(1.1);
+    mix-blend-mode: multiply;
+  }
+  
+  .container {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 90vh;
+    max-width: 100%;
+    overflow-x: hidden;
   }
   
   .top-row, .bottom-row {
     display: flex;
     justify-content: center;
     width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
   
   .rotated {
@@ -58,6 +68,8 @@
     cursor: pointer;
     z-index: 0;
     margin: 15px;
+    max-width: 100%;
+    max-height: 100%;
   }
   
   .lp-container {
@@ -67,9 +79,24 @@
     height: 35vh;
   }
 
-  *:not(.counter) {
-    filter: brightness(1.1);
-    mix-blend-mode: multiply;
+  .counter, .life {
+    color: rgb(255, 241, 241); 
+    font-weight: bold;
+    text-shadow: 0px 0px 18px rgba(0,0,0,1);
   }
 
+  .floating-text {
+    position: absolute;
+    top: 55%;
+    left: 45%;
+    background-color: rgba(255, 0, 0, 0.5);
+    padding: 10px;
+  }
 
+  .floating-text-2{
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    background-color: rgba(255, 0, 0, 0.5);
+    padding: 10px;
+  }

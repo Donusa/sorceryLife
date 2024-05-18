@@ -15,7 +15,7 @@ To get started with SorceryLife, simply clone the repository to your local machi
 ```bash
 git clone https://github.com/donusa/SorceryLife.git
 ```
-# Usage
+## Usage
 Open the SorceryLife web (https://donusa.github.io/sorceryLife/).
 Adjust life and mana totals by tapping the upper or lower portion of each number to increment or decrement.
 Branching and Updates

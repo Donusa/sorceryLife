@@ -86,11 +86,9 @@ export class LifeCounterComponent implements OnInit {
       this.lossVisible = true;
       
       if (side === "top") {
-        this.elementRef.nativeElement.querySelector('.floating-text').style.transform = 'rotate(180deg)';
-        this.totalLifeLost+=modification;
+        this.totalLifeLost2+=modification;
       }
       else{
-        this.elementRef.nativeElement.querySelector('.floating-text').style.transform = 'rotate(0deg)';
         this.totalLifeLost-=modification;
       }
 

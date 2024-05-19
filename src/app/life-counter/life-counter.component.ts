@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef} from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-life-counter',
@@ -7,34 +8,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LifeCounterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private elementRef: ElementRef) { }
 
   ngOnInit(): void {
+    document.addEventListener('contextmenu', this.disableContextMenu);
   }
 
   topImages = [
-    { src: "/sorceryLife/assets/pictures/air_element.jpg"},
-    { src: "/sorceryLife/assets/pictures/earth_element.jpg"},
-    { src: "/sorceryLife/assets/pictures/fire_element.jpg" },
-    { src: "/sorceryLife/assets/pictures/water_element.jpg" },
-    { src: "/sorceryLife/assets/pictures/mana.png"}
+    { src: environment.baseHref + "assets/pictures/air_element.jpg" },
+    { src: environment.baseHref + "assets/pictures/earth_element.jpg" },
+    { src: environment.baseHref + "assets/pictures/fire_element.jpg" },
+    { src: environment.baseHref + "assets/pictures/water_element.jpg" },
+    { src: environment.baseHref + "assets/pictures/mana.png" }
   ];
   bottomImages = [
-    { src: "/sorceryLife/assets/pictures/air_element.jpg"},
-    { src: "/sorceryLife/assets/pictures/earth_element.jpg"},
-    { src: "/sorceryLife/assets/pictures/fire_element.jpg" },
-    { src: "/sorceryLife/assets/pictures/water_element.jpg" },
-    { src: "/sorceryLife/assets/pictures/mana.png"}
+    { src: environment.baseHref + "assets/pictures/air_element.jpg" },
+    { src: environment.baseHref + "assets/pictures/earth_element.jpg" },
+    { src: environment.baseHref + "assets/pictures/fire_element.jpg" },
+    { src: environment.baseHref + "assets/pictures/water_element.jpg" },
+    { src: environment.baseHref + "assets/pictures/mana.png" }
   ];
+
   counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  topLife:number = 20;
-  bottomLife:number = 20;
+  topLife: number = 20;
+  bottomLife: number = 20;
+  baseHref = environment.baseHref;
+  lossVisible: boolean = false;
+  lossVisible2: boolean = false;
+  timeoutTimer: number = 3000;
+  timer: any;
+  totalLifeLost: number = 0;
+  totalLifeLost2: number = 0;
+
+  disableContextMenu(event: MouseEvent):void{
+    event.preventDefault();
+  }
 
   handleClick(index: number, event: MouseEvent) {
     const imageElement = event.target as HTMLElement;
     const rect = imageElement.getBoundingClientRect();
     const y = event.clientY - rect.top;
-    
+
     this.counts[index] = this.evaluateStat(y, rect.height, this.counts[index]);
   }
 
@@ -42,7 +56,7 @@ export class LifeCounterComponent implements OnInit {
     const imageElement = event.target as HTMLElement;
     const rect = imageElement.getBoundingClientRect();
     const y = event.clientY - rect.top;
-    
+
     this.counts[index] = this.evaluateInvertedStat(y, rect.height, this.counts[index]);
   }
 
@@ -50,28 +64,63 @@ export class LifeCounterComponent implements OnInit {
     const imageElement = event.target as HTMLElement;
     const rect = imageElement.getBoundingClientRect();
     const y = event.clientY - rect.top;
-    if (side==="top"){
+    if((this.isInRange(side,(y<rect.height/2)?-1:+1)))
+      {
+        this.showLoss((y<rect.height/2)?-1:+1,side);
+      }
+    if (side === "top") {
       this.topLife = this.evaluateInvertedStat(y, rect.height, this.topLife);
     }
-    else{
+    else if(side !== "top"){
       this.bottomLife = this.evaluateStat(y, rect.height, this.bottomLife);
     }
   }
 
-  evaluateStat(y: number, rect: number, stat: number):number{
-    if (y<rect/2){
+  evaluateStat(y: number, rect: number, stat: number): number {
+    if (y < rect / 2) {
       return Math.min(stat + 1, 20);
-    } else {
-      return Math.max(stat - 1, 0);
     }
+    return Math.max(stat - 1, 0);
   }
 
-  evaluateInvertedStat(y: number, rect: number, stat: number):number{
-    if (y<rect/2){
+  evaluateInvertedStat(y: number, rect: number, stat: number): number {
+    if (y < rect / 2) {
       return Math.max(stat - 1, 0);
-    } else {
-      return Math.min(stat + 1, 20);
     }
+    return Math.min(stat + 1, 20);
   }
+
+  showLoss(modification: number, side: string) {
+      
+      if (side === "top") {
+        this.totalLifeLost2+=modification;
+        this.lossVisible2 = true;
+      }
+      else if (side!=="top"){
+        this.lossVisible = true;
+        this.totalLifeLost-=modification;
+      }
+
+      if(this.timer) clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.lossVisible = false;
+        this.lossVisible2 = false;
+        this.totalLifeLost = 0;
+        this.totalLifeLost2 = 0;
+      }, 1500);
+    }
+
+    isInRange(side: string, modification: number):boolean{
+      return(
+        (this.bottomLife-modification>=0 
+          && this.bottomLife-modification<=20 
+          && side!=='top')
+        ||
+        (this.topLife+modification>=0 
+          && this.topLife+modification<=20 
+          && side==='top')
+      );
+    }
 
 }
+

@@ -1,35 +1,36 @@
-<div class="container" >
-    <div class="top-row rotated">
-      <div class="image-container" *ngFor="let image of topImages; let i = index">
-        <div class="counter">{{ counts[i] }}</div>
-        <img class="element-img rotated"
-          [src]="image.src" 
-          alt="Image {{ i + 1 }}" 
-          class="rotated" 
-          (click)="handleInvertedClick(i, $event)">
-      </div>
-    </div>
-    <div class="lp-container rotated">
-      <div class="life">{{ topLife }}</div>
-      <img class="lp-image" src="/sorceryLife/assets/pictures/white276x.png" alt=""
-      (click)="handleLife('top', $event)"
-      >
-    </div>
-    <!--<div class="divider"></div>-->
-    <div class="lp-container">
-      <div class="life">{{ bottomLife }}</div>
-      <img class="lp-image" src="/sorceryLife/assets/pictures/white276x.png" alt=""
-      (click)="handleLife('', $event)"
-      >
-    </div>
-    <div class="bottom-row">
-      <div class="image-container" *ngFor="let image of bottomImages; let i = index">
-        <div class="counter">{{ counts[i + topImages.length] }}</div>
-        <img 
-          [src]="image.src" 
-          alt="Image {{ i + 1 + topImages.length }}" 
-          (click)="handleClick(i + topImages.length, $event)">
-      </div>
+<div class="container">
+
+  <div class="floating-text" *ngIf="lossVisible">
+    {{totalLifeLost}}</div>
+  
+  <div class="floating-text-2" style="rotate: 180deg;" *ngIf="lossVisible2">
+    {{totalLifeLost2}}</div>
+
+
+  <div class="top-row" style="margin-top: 15px;">
+    <div class="image-container" *ngFor="let image of topImages; let i = index">
+      <div class="counter text" style="transform: rotate(180deg);">{{ counts[i] }}</div>
+      <img style="transform: rotate(180deg);" [src]="image.src" alt="Image {{ i + 1 }}"
+        (click)="handleInvertedClick(i, $event)">
     </div>
   </div>
-  
+
+  <div class="lp-container">
+    <div class="life text" style="transform: rotate(180deg);">{{ topLife }}</div>
+    <img class="lp-image" src="{{ baseHref }}assets/pictures/white276x.png" alt="" (click)="handleLife('top', $event)">
+  </div>
+
+  <div class="lp-container">
+    <div class="life text">{{ bottomLife }}</div>
+    <img class="lp-image" src="{{ baseHref }}assets/pictures/white276x.png" alt="" (click)="handleLife('', $event)">
+  </div>
+
+  <div class="bottom-row">
+    <div class="image-container" *ngFor="let image of bottomImages; let i = index">
+      <div class="counter text">{{ counts[i + topImages.length] }}</div>
+      <img class="bottom-img" [src]="image.src" alt="Image {{ i + 1 + topImages.length }}"
+        (click)="handleClick(i + topImages.length, $event)">
+    </div>
+  </div>
+
+</div>

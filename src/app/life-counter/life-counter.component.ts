@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef} from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,6 +11,7 @@ export class LifeCounterComponent implements OnInit {
   constructor(private elementRef: ElementRef) { }
 
   ngOnInit(): void {
+    document.addEventListener('contextmenu', this.disableContextMenu);
   }
 
   topImages = [
@@ -33,10 +34,15 @@ export class LifeCounterComponent implements OnInit {
   bottomLife: number = 20;
   baseHref = environment.baseHref;
   lossVisible: boolean = false;
+  lossVisible2: boolean = false;
   timeoutTimer: number = 3000;
   timer: any;
   totalLifeLost: number = 0;
   totalLifeLost2: number = 0;
+
+  disableContextMenu(event: MouseEvent):void{
+    event.preventDefault();
+  }
 
   handleClick(index: number, event: MouseEvent) {
     const imageElement = event.target as HTMLElement;
@@ -58,12 +64,14 @@ export class LifeCounterComponent implements OnInit {
     const imageElement = event.target as HTMLElement;
     const rect = imageElement.getBoundingClientRect();
     const y = event.clientY - rect.top;
+    if((this.isInRange(side,(y<rect.height/2)?-1:+1)))
+      {
+        this.showLoss((y<rect.height/2)?-1:+1,side);
+      }
     if (side === "top") {
       this.topLife = this.evaluateInvertedStat(y, rect.height, this.topLife);
-      this.showLoss((y<rect.height/2)?-1:+1,side);
     }
     else if(side !== "top"){
-      this.showLoss((y<rect.height/2)?-1:+1,side);
       this.bottomLife = this.evaluateStat(y, rect.height, this.bottomLife);
     }
   }
@@ -83,20 +91,36 @@ export class LifeCounterComponent implements OnInit {
   }
 
   showLoss(modification: number, side: string) {
-      this.lossVisible = true;
       
       if (side === "top") {
         this.totalLifeLost2+=modification;
+        this.lossVisible2 = true;
       }
-      else{
+      else if (side!=="top"){
+        this.lossVisible = true;
         this.totalLifeLost-=modification;
       }
 
       if(this.timer) clearTimeout(this.timer);
       this.timer = setTimeout(() => {
         this.lossVisible = false;
+        this.lossVisible2 = false;
         this.totalLifeLost = 0;
+        this.totalLifeLost2 = 0;
       }, 1500);
-  }
+    }
+
+    isInRange(side: string, modification: number):boolean{
+      return(
+        (this.bottomLife-modification>=0 
+          && this.bottomLife-modification<=20 
+          && side!=='top')
+        ||
+        (this.topLife+modification>=0 
+          && this.topLife+modification<=20 
+          && side==='top')
+      );
+    }
+
 }
 

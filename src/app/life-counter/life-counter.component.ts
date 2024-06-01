@@ -14,24 +14,20 @@ export class LifeCounterComponent implements OnInit {
     document.addEventListener('contextmenu', this.disableContextMenu);
   }
 
-  topImages = [
+  leftImages = [
     { src: environment.baseHref + "assets/pictures/air_element.jpg" },
     { src: environment.baseHref + "assets/pictures/earth_element.jpg" },
-    { src: environment.baseHref + "assets/pictures/fire_element.jpg" },
-    { src: environment.baseHref + "assets/pictures/water_element.jpg" },
-    { src: environment.baseHref + "assets/pictures/mana.png" }
   ];
-  bottomImages = [
-    { src: environment.baseHref + "assets/pictures/air_element.jpg" },
-    { src: environment.baseHref + "assets/pictures/earth_element.jpg" },
+  rightImages = [
     { src: environment.baseHref + "assets/pictures/fire_element.jpg" },
     { src: environment.baseHref + "assets/pictures/water_element.jpg" },
-    { src: environment.baseHref + "assets/pictures/mana.png" }
   ];
 
-  counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  counts = [0, 0, 0, 0, 0, 0, 0, 0];
   topLife: number = 20;
   bottomLife: number = 20;
+  topMana: number = 0;
+  bottomMana: number = 0;
   baseHref = environment.baseHref;
   lossVisible: boolean = false;
   lossVisible2: boolean = false;

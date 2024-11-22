@@ -63,7 +63,7 @@
     align-items: center;
     text-align: center;
     z-index: 1;
-    font-size: 10em;
+    font-size: 8em;
     color: black;    
     pointer-events: none;
   }
@@ -81,7 +81,7 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    height: 28vh;
+    height: 26vh;
   }
 
   .counter, .life {
@@ -120,5 +120,56 @@
   }
 
   .lp-image{
-    height: 25dvh;
+    height: 20dvh;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin: 0 15px;
+  }
+
+  .turn-indicator {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+  .turn-button {
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 1.2em;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .active-top::before {
+    content: '';
+    position: absolute;
+    top: -45vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 45vh;
+    background: rgba(0, 255, 0, 0.1);
+    pointer-events: none;
+  }
+
+  .active-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: -45vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 45vh;
+    background: rgba(0, 255, 0, 0.1);
+    pointer-events: none;
   }

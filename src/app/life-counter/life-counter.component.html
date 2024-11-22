@@ -6,6 +6,11 @@
   <div class="floating-text-2" style="rotate: 180deg;" *ngIf="lossVisible2">
     {{totalLifeLost2}}</div>
 
+  <div class="turn-indicator" [class.active-top]="activePlayer === 'top'" [class.active-bottom]="activePlayer === 'bottom'">
+    <button class="turn-button" (click)="toggleActivePlayer()">
+      {{ !activePlayer ? 'Start Game' : 'Switch Turn' }}
+    </button>
+  </div>
 
   <div class="top-row" style="margin-top: 15px;">
     <div class="column">

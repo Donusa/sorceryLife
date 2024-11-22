@@ -35,6 +35,7 @@ export class LifeCounterComponent implements OnInit {
   timer: any;
   totalLifeLost: number = 0;
   totalLifeLost2: number = 0;
+  activePlayer: 'top' | 'bottom' | null = null;
 
   disableContextMenu(event: MouseEvent):void{
     event.preventDefault();
@@ -116,6 +117,14 @@ export class LifeCounterComponent implements OnInit {
           && this.topLife+modification<=20 
           && side==='top')
       );
+    }
+
+    toggleActivePlayer() {
+      if (!this.activePlayer) {
+        this.activePlayer = Math.random() < 0.5 ? 'top' : 'bottom';
+      } else {
+        this.activePlayer = this.activePlayer === 'top' ? 'bottom' : 'top';
+      }
     }
 
 }

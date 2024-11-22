@@ -58,4 +58,20 @@
     </div>
   </div>
 
+  <div class="dice-button" (click)="toggleDiceModal()">
+    🎲
+  </div>
+
+  <div class="dice-modal" *ngIf="showDiceModal">
+    <div class="dice-options">
+      <button *ngFor="let faces of diceOptions" (click)="rollDice(faces)">
+        d{{faces}}
+      </button>
+    </div>
+  </div>
+
+  <div class="dice-result" *ngIf="diceResult">
+    {{diceResult}}
+  </div>
+
 </div>

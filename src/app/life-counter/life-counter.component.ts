@@ -36,6 +36,9 @@ export class LifeCounterComponent implements OnInit {
   totalLifeLost: number = 0;
   totalLifeLost2: number = 0;
   activePlayer: 'top' | 'bottom' | null = null;
+  showDiceModal: boolean = false;
+  diceResult: number | null = null;
+  diceOptions = [4, 6, 8, 10, 20];
 
   disableContextMenu(event: MouseEvent):void{
     event.preventDefault();
@@ -125,6 +128,18 @@ export class LifeCounterComponent implements OnInit {
       } else {
         this.activePlayer = this.activePlayer === 'top' ? 'bottom' : 'top';
       }
+    }
+
+    toggleDiceModal() {
+      this.showDiceModal = !this.showDiceModal;
+    }
+
+    rollDice(faces: number) {
+      this.diceResult = Math.floor(Math.random() * faces) + 1;
+      setTimeout(() => {
+        this.diceResult = null;
+        this.showDiceModal = false;
+      }, 2000);
     }
 
 }

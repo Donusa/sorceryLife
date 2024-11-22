@@ -22,8 +22,12 @@
     </div>
     <div class="column">
       <div class="lp-container">
-        <div class="life text" style="transform: rotate(180deg);">{{ topLife }}</div>
-        <img class="lp-image" src="{{ baseHref }}assets/pictures/white276x.png" alt="" (click)="handleLife('top', $event)">
+        <div class="life text" style="transform: rotate(180deg);" *ngIf="topLife > 0">{{ topLife }}</div>
+        <img class="lp-image" 
+             [style.transform]="topLife > 0 ? 'none' : 'rotate(180deg)'"
+             [src]="topLife > 0 ? baseHref + 'assets/pictures/white276x.png' : baseHref + 'assets/pictures/deaths door.jpg'" 
+             alt="" 
+             (click)="handleLife('top', $event)">
       </div>
     </div>
     <div class="column">
@@ -45,8 +49,9 @@
     </div>
     <div class="column">
       <div class="lp-container">
-        <div class="life text">{{ bottomLife }}</div>
-        <img class="lp-image" src="{{ baseHref }}assets/pictures/white276x.png" alt="" (click)="handleLife('bottom', $event)">
+        <div class="life text" *ngIf="bottomLife > 0">{{ bottomLife }}</div>
+        <img class="lp-image" [src]="bottomLife > 0 ? baseHref + 'assets/pictures/white276x.png' : baseHref + 'assets/pictures/deaths door.jpg'" 
+             alt="" (click)="handleLife('bottom', $event)">
       </div>
     </div>
     <div class="column">
@@ -72,6 +77,14 @@
 
   <div class="dice-result" *ngIf="diceResult">
     {{diceResult}}
+  </div>
+
+  <div class="twister-button" (click)="rollChaosTwister()">
+    🌪️
+  </div>
+
+  <div class="twister-result" *ngIf="chaosTwisterResult">
+    {{chaosTwisterResult}}
   </div>
 
 </div>

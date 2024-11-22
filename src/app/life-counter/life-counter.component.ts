@@ -39,6 +39,7 @@ export class LifeCounterComponent implements OnInit {
   showDiceModal: boolean = false;
   diceResult: number | null = null;
   diceOptions = [4, 6, 8, 10, 20];
+  chaosTwisterResult: string | null = null;
 
   disableContextMenu(event: MouseEvent):void{
     event.preventDefault();
@@ -61,6 +62,10 @@ export class LifeCounterComponent implements OnInit {
   }
 
   handleLife(side: string, event: MouseEvent) {
+    if ((side === "top" && this.topLife <= 0) || (side !== "top" && this.bottomLife <= 0)) {
+      return;
+    }
+
     const imageElement = event.target as HTMLElement;
     const rect = imageElement.getBoundingClientRect();
     const y = event.clientY - rect.top;
@@ -139,7 +144,20 @@ export class LifeCounterComponent implements OnInit {
       setTimeout(() => {
         this.diceResult = null;
         this.showDiceModal = false;
-      }, 2000);
+      }, 3000);
+    }
+
+    rollChaosTwister() {
+      const failChance = 0.1;
+      if (Math.random() < failChance) {
+        this.chaosTwisterResult = '❌';
+      } else {
+        this.chaosTwisterResult = (Math.floor(Math.random() * 20) + 1).toString();
+      }
+      
+      setTimeout(() => {
+        this.chaosTwisterResult = null;
+      }, 3000);
     }
 
 }
